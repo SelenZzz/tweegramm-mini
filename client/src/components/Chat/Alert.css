@@ -1,0 +1,17 @@
+.alert {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.alert__text {
+  font-weight: bold;
+  font-size: 12px;
+  color: white;
+  background-color: #00000080;
+  border-radius: 18px;
+  max-width: 88%;
+  padding: 7.5px 15px;
+  margin: 0px 15px;
+}
