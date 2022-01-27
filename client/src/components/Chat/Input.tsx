@@ -14,7 +14,7 @@ const Input = () => {
 
   const sendMessage = () => {
     const content = input.trim();
-    dispatch(chatActions.submitMessage({ content: content }));
+    if (content) dispatch(chatActions.submitMessage({ content: content }));
     setInput('');
   };
 
@@ -22,12 +22,7 @@ const Input = () => {
     <div className="textInput__container">
       <div className="textInput">
         <form>
-          <input
-            placeholder="Message..."
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-          />
+          <input placeholder="Message..." type="text" value={input} onChange={(e) => setInput(e.target.value)} />
           <IconButton onClick={sendMessage}>
             <SendRounded />
           </IconButton>
