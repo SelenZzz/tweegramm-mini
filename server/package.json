@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^14.3.2",
+    "ts-node": "^10.4.0",
     "websocket": "^1.0.34"
   },
   "devDependencies": {

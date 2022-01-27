@@ -42,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^27.4.0",
     "@types/websocket": "^1.0.4"
   }
 }
