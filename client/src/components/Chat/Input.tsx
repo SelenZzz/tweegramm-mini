@@ -23,7 +23,7 @@ const Input = () => {
     <div className="textInput__container">
       <div className="textInput">
         <form>
-          <input placeholder="Message..." type="text" value={input} onChange={(e) => setInput(e.target.value)} />
+          <input placeholder="Message..." type="text" value={input} onChange={(event) => setInput(event.target.value)} />
           <IconButton onClick={(event) => sendMessage(event)} type="submit">
             <SendRounded />
           </IconButton>
