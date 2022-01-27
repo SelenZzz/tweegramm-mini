@@ -11,7 +11,8 @@ const Login = () => {
 
   const [username, setUsername] = useState<string>('');
 
-  const loginUser = () => {
+  const loginUser = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
     if (username) {
       const user: iUser = { name: username };
       dispatch(userActions.setUsername({ user: user }));
@@ -25,7 +26,7 @@ const Login = () => {
       </div>
       <form className="login__form">
         <input placeholder="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-        <button type="button" onClick={() => loginUser()} title="Join">
+        <button type="submit" onClick={(event) => loginUser(event)} title="Join">
           Join
         </button>
       </form>
