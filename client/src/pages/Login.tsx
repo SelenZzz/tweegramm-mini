@@ -12,8 +12,10 @@ const Login = () => {
   const [username, setUsername] = useState<string>('');
 
   const loginUser = () => {
-    const user: iUser = { name: username };
-    dispatch(userActions.setUsername({ user: user }));
+    if (username) {
+      const user: iUser = { name: username };
+      dispatch(userActions.setUsername({ user: user }));
+    }
   };
   return (
     <div className="login">
@@ -22,12 +24,7 @@ const Login = () => {
         <h1>Tweegramm</h1>
       </div>
       <form className="login__form">
-        <input
-          placeholder="Username"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        <input placeholder="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         <button type="button" onClick={() => loginUser()} title="Join">
           Join
         </button>
