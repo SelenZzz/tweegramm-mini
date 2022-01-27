@@ -1,5 +1,7 @@
 import './Chat.css';
 
+import { useEffect, useRef } from 'react';
+
 import { useSelector } from 'react-redux';
 import { selectMessages } from '../redux/chatSlice';
 
@@ -8,11 +10,19 @@ import Input from '../components/Chat/Input';
 import Alert from '../components/Chat/Alert';
 
 const Chat = () => {
-  const messages = useSelector(selectMessages);
   // TODO: Add user list with avatars
   // TODO: Alert on user join
   // TODO: Write in message
   // TODO: Write in message in realtime
+  const messagesEndRef = useRef<HTMLInputElement>(null);
+
+  const messages = useSelector(selectMessages);
+
+  // scroll down on new message
+  useEffect(() => {
+    messagesEndRef.current!.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
   return (
     <div className="chat">
       <div className="chat__messages">
@@ -20,6 +30,7 @@ const Chat = () => {
         {messages.map((m) => {
           return <Message key={m.uid} data={m} />;
         })}
+        <div ref={messagesEndRef} />
       </div>
       <Input />
     </div>
