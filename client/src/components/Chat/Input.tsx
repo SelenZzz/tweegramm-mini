@@ -12,7 +12,8 @@ const Input = () => {
 
   const [input, setInput] = useState<string>('');
 
-  const sendMessage = () => {
+  const sendMessage = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.preventDefault();
     const content = input.trim();
     if (content) dispatch(chatActions.submitMessage({ content: content }));
     setInput('');
@@ -23,7 +24,7 @@ const Input = () => {
       <div className="textInput">
         <form>
           <input placeholder="Message..." type="text" value={input} onChange={(e) => setInput(e.target.value)} />
-          <IconButton onClick={sendMessage}>
+          <IconButton onClick={(event) => sendMessage(event)} type="submit">
             <SendRounded />
           </IconButton>
         </form>
