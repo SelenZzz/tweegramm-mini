@@ -30,4 +30,5 @@ export interface iMessage {
   timestamp?: number;
   userKey: string;
   content: string;
+  senderName?: string;
 }

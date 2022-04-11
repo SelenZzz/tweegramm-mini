@@ -51,6 +51,7 @@ const chatMiddleware: Middleware = (store) => {
               timestamp: dataFromServer.message!.timestamp,
               userKey: dataFromServer.message!.userKey,
               content: dataFromServer.message!.content,
+              senderName: dataFromServer.message!.senderName,
             };
             store.dispatch(chatActions.receiveMessage({ message: newMessage }));
             break;

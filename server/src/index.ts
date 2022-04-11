@@ -63,6 +63,7 @@ wsServer.on('request', (request) => {
           timestamp: Date.now(),
           userKey: dataFromClient.message!.userKey,
           content: dataFromClient.message!.content,
+          senderName: clients.get(userUuid)?.user.name,
         };
         const json: iEvent = {
           // data for sending
