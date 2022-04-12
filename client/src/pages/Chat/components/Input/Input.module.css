@@ -29,11 +29,36 @@
   border: none;
   outline: none;
   background-color: transparent;
-  color: black;
+  color: #0e1621;
 }
 
 .input > form > input::placeholder-shown {
   color: #8e8e93;
+}
+
+.send {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 32px;
+  height: 32px;
+  padding-left: 7px;
+
+  outline: 0;
+  border: 0;
+  border-radius: 50%;
+
+  background-color: transparent;
+  color: #0e1621;
+
+  transition: 200ms;
+}
+
+.send:hover {
+  color: #c7c6e0;
+  background-color: #0e1621;
+  transition: 200ms;
 }
 
 /* .textInput > form > input:not(:placeholder-shown) {

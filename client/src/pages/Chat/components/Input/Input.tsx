@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { chatActions } from '../../../../redux/chatSlice';
 
 // icons
-import { IconButton } from '@material-ui/core';
 import { SendRounded } from '@material-ui/icons';
 
 export const Input = () => {
@@ -28,9 +27,9 @@ export const Input = () => {
       <div className={styles.input}>
         <form>
           <input placeholder="Message..." type="text" value={input} onChange={(event) => setInput(event.target.value)} />
-          <IconButton onClick={(event) => sendMessage(event)} type="submit">
+          <button className={styles.send} onClick={(event) => sendMessage(event)}>
             <SendRounded />
-          </IconButton>
+          </button>
         </form>
       </div>
     </div>
