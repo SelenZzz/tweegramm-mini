@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { iMessage } from '../lib/types';
+import { iMessage, iUser } from '../lib/types';
 import { RootState } from './store';
 
 export interface ChatState {
-  messages: iMessage[];
+  messages: (iMessage | iUser)[];
   isEstablishingConnection: boolean;
   isConnected: boolean;
 }
@@ -28,7 +28,7 @@ export const chatSlice = createSlice({
     receiveAllMessages: (state, action: PayloadAction<{ messages: iMessage[] }>) => {
       state.messages = action.payload.messages;
     },
-    receiveMessage: (state, action: PayloadAction<{ message: iMessage }>) => {
+    receiveMessage: (state, action: PayloadAction<{ message: iMessage | iUser }>) => {
       state.messages.push(action.payload.message);
     },
     submitMessage: (state, action: PayloadAction<{ content: string }>) => {

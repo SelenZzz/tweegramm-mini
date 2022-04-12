@@ -1,5 +1,6 @@
 export enum EventType {
   USER_LOGIN = 'user_login',
+  USER_JOINED = 'user_joined',
   USER_LOGOUT = 'user_logout',
   MESSAGE_SEND = 'message_send',
   MESSAGE_RECEIVE = 'message_receive',
@@ -15,7 +16,7 @@ export interface iEvent {
 
 export interface iUser {
   key?: string;
-  name: string;
+  username: string;
 }
 
 export interface iMessage {

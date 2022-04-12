@@ -25,7 +25,7 @@ export const userSlice = createSlice({
     },
     login: (state, action: PayloadAction<{ user: iUser }>) => {
       state.uid = action.payload.user.key;
-      state.name = action.payload.user.name;
+      state.name = action.payload.user.username;
       if (action.payload.user.key) state.logged = true;
     },
     logout: (state) => {

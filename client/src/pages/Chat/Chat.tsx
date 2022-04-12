@@ -30,8 +30,9 @@ const Chat = () => {
     <div className={styles.container}>
       <div className={styles.messages}>
         <Alert text={'You have joined the chat'} />
-        {messages.map((m) => {
-          return <Message key={m.uid} data={m} />;
+        {messages.map((m, index) => {
+          if ('senderName' in m) return <Message key={index} data={m} />;
+          if ('username' in m) return <Alert key={index} text={`${m.username} has joined the chat`} />;
         })}
         <div ref={messagesEndRef} style={{ marginBottom: 5 }} />
       </div>

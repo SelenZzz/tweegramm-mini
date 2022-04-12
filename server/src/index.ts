@@ -46,27 +46,34 @@ wsServer.on('request', (request) => {
     const dataFromClient: iEvent = JSON.parse(message.utf8Data); // getting data
     switch (dataFromClient.event) {
       case EventType.USER_LOGIN: {
-        clients.get(userUuid)!.user.name = dataFromClient.user!.name; // set username
+        clients.get(userUuid)!.user.username = dataFromClient.user!.username; // set username
         const json: iEvent = {
-          // data for sending
           event: EventType.USER_LOGIN,
           user: clients.get(userUuid)!.user,
         };
         sendMessage(connection, JSON.stringify(json)); // confirm user
+        json.event = EventType.USER_JOINED;
+        clients.forEach((c) => {
+          // send other users
+          if (c.connection !== connection) {
+            sendMessage(c.connection, JSON.stringify(json));
+          }
+        });
         console.log(DATA, 'Logged user:', json);
         break;
       }
 
       case EventType.MESSAGE_SEND: {
+        console.log(clients.get(userUuid)!.user.username);
+
         const newMessage: iMessage = {
           uid: uuidv4(),
           timestamp: Date.now(),
           userKey: dataFromClient.message!.userKey,
           content: dataFromClient.message!.content,
-          senderName: clients.get(userUuid)?.user.name,
+          senderName: clients.get(userUuid)!.user.username,
         };
         const json: iEvent = {
-          // data for sending
           event: EventType.MESSAGE_RECEIVE,
           message: newMessage,
         };
@@ -87,7 +94,7 @@ wsServer.on('request', (request) => {
   connection.on('close', function (connection) {
     console.log(`${new Date()} User ${userUuid} disconnected`);
     const json: iEvent = { event: EventType.USER_LOGOUT, user: clients.get(userUuid)!.user };
-    // TODO: Send every one user left
+    // TODO: Send everyone user left
     clients.delete(userUuid);
   });
 });

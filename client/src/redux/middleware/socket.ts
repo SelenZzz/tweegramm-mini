@@ -37,7 +37,7 @@ const chatMiddleware: Middleware = (store) => {
           case EventType.USER_LOGIN: {
             const user: iUser = {
               key: dataFromServer.user!.key,
-              name: dataFromServer.user!.name,
+              username: dataFromServer.user!.username,
             };
             store.dispatch(userActions.login({ user }));
             break;
@@ -54,6 +54,16 @@ const chatMiddleware: Middleware = (store) => {
               senderName: dataFromServer.message!.senderName,
             };
             store.dispatch(chatActions.receiveMessage({ message: newMessage }));
+            break;
+          }
+
+          case EventType.USER_JOINED: {
+            console.log(dataFromServer);
+            const newUserJoined: iUser = {
+              key: dataFromServer.user!.key,
+              username: dataFromServer.user!.username,
+            };
+            store.dispatch(chatActions.receiveMessage({ message: newUserJoined }));
             break;
           }
 
@@ -77,7 +87,7 @@ const chatMiddleware: Middleware = (store) => {
     }
 
     if (userActions.setUsername.match(action) && isConnectionEstablished) {
-      const user: iUser = { name: action.payload.user.name };
+      const user: iUser = { username: action.payload.user.username };
       const data: iEvent = { event: EventType.USER_LOGIN, user: user };
       if (socket.readyState) socket.send(JSON.stringify(data));
     }

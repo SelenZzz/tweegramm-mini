@@ -19,7 +19,7 @@ const Login = () => {
   const loginUser = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.preventDefault();
     if (username) {
-      const user: iUser = { name: username };
+      const user: iUser = { username: username };
       dispatch(userActions.setUsername({ user: user }));
     }
   };
