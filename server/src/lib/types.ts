@@ -24,6 +24,7 @@ export interface iUser {
 export interface iClient {
   connection: webSocket.connection;
   user: iUser;
+  logged: boolean;
 }
 
 export interface iMessage {

@@ -35,7 +35,7 @@ wsServer.on('request', (request) => {
   // setup user
   const userUuid = request.key;
   const newUser: iUser = { key: userUuid };
-  const newClient: iClient = { connection: connection, user: newUser };
+  const newClient: iClient = { connection: connection, user: newUser, logged: false };
   clients.set(userUuid, newClient);
   // proceed events from client
   connection.on('message', (message) => {
@@ -46,6 +46,7 @@ wsServer.on('request', (request) => {
     const dataFromClient: iEvent = JSON.parse(message.utf8Data); // getting data
     switch (dataFromClient.event) {
       case EventType.USER_LOGIN: {
+        clients.get(userUuid)!.logged = true; // set logged
         clients.get(userUuid)!.user.username = dataFromClient.user!.username; // set username
         const json: iEvent = {
           event: EventType.USER_LOGIN,
@@ -55,7 +56,7 @@ wsServer.on('request', (request) => {
         json.event = EventType.USER_JOINED;
         clients.forEach((c) => {
           // send other users
-          if (c.connection !== connection) {
+          if (c.connection !== connection && c.logged) {
             sendMessage(c.connection, JSON.stringify(json));
           }
         });
@@ -79,7 +80,7 @@ wsServer.on('request', (request) => {
         };
         // send every one
         clients.forEach((c) => {
-          sendMessage(c.connection, JSON.stringify(json));
+          if (c.logged) sendMessage(c.connection, JSON.stringify(json));
         });
         console.log(DATA, 'New message:', json);
         break;
