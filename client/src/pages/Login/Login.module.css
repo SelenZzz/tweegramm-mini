@@ -1,4 +1,4 @@
-.login {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,14 +8,14 @@
   color: white;
 }
 
-.login__form {
+.form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.login__form > input {
+.form > input {
   margin: 30px;
   padding: 15px;
   outline: none;
@@ -26,16 +26,18 @@
   width: 200px;
 }
 
-.login__form > button {
+.form > button {
   border: 0px;
   color: white;
   width: 234px;
   padding: 15px;
   border-radius: 10px;
   background-color: #2b5478;
+  transition: 200ms;
 }
 
-.login__form > button:hover {
+.form > button:hover {
   color: #0296c7;
   background-color: white;
+  transition: 200ms;
 }

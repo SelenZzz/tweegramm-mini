@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  width: inherit;
+}
+
+.input {
+  width: 100%;
+  height: 35px;
+  background-color: #dadbdd;
+
+  padding: 0px 20px;
+  margin-bottom: 5px;
+
+  display: flex;
+  align-items: center;
+
+  border-top: 1px solid #bebebe19;
+  border-radius: 17px;
+}
+
+.input > form {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.input > form > input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: black;
+}
+
+.input > form > input::placeholder-shown {
+  color: #8e8e93;
+}
+
+/* .textInput > form > input:not(:placeholder-shown) {
+} */

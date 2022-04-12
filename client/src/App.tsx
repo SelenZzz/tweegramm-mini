@@ -1,13 +1,14 @@
-import './App.css';
-
+// react
 import { useEffect } from 'react';
 
+// redux
 import { useDispatch, useSelector } from 'react-redux';
 import { chatActions } from './redux/chatSlice';
 import { selectLogged } from './redux/userSlice';
 
-import Chat from './pages/Chat';
-import Login from './pages/Login';
+// pages
+import Chat from './pages/Chat/Chat';
+import Login from './pages/Login/Login';
 
 const App = () => {
   const dispatch = useDispatch();

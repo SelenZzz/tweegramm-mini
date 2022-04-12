@@ -4,35 +4,41 @@
   flex-direction: row;
 }
 
-.message__text {
+.text {
   display: flex;
   flex-wrap: wrap;
   align-self: flex-start;
   justify-content: space-between;
   flex-direction: row;
+
   border-radius: 18px;
   border: 0.5px solid #b5cadd;
+
   max-width: 88%;
+
   padding: 7.5px 15px;
+
   color: black;
   word-break: break-all;
 }
 
-.message__sender {
+.sender {
   background-color: #c7c6e0;
   border-bottom-right-radius: 7px;
   margin-left: auto;
 }
 
-.message__receiver {
+.receiver {
   background-color: white;
   border-bottom-left-radius: 7px;
 }
 
-.message__time {
+.time {
+  align-self: flex-end;
+
   margin-left: auto;
   padding-left: 5px;
+
   color: #51586f;
   font-size: 10px;
-  align-self: flex-end;
 }

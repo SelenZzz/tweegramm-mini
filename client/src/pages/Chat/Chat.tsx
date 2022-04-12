@@ -1,13 +1,16 @@
-import './Chat.css';
+import styles from './Chat.module.css';
 
+// react
 import { useEffect, useRef } from 'react';
 
+// redux
 import { useSelector } from 'react-redux';
-import { selectMessages } from '../redux/chatSlice';
+import { selectMessages } from '../../redux/chatSlice';
 
-import Message from '../components/Chat/Message';
-import Input from '../components/Chat/Input';
-import Alert from '../components/Chat/Alert';
+// components
+import { Message } from './components/Message/Message';
+import { Input } from './components/Input/Input';
+import { Alert } from './components/Alert/Alert';
 
 const Chat = () => {
   // TODO: Add user list with avatars
@@ -24,13 +27,13 @@ const Chat = () => {
   }, [messages]);
 
   return (
-    <div className="chat">
-      <div className="chat__messages">
+    <div className={styles.container}>
+      <div className={styles.messages}>
         <Alert text={'You have joined the chat'} />
         {messages.map((m) => {
           return <Message key={m.uid} data={m} />;
         })}
-        <div ref={messagesEndRef} />
+        <div ref={messagesEndRef} style={{ marginBottom: 5 }} />
       </div>
       <Input />
     </div>

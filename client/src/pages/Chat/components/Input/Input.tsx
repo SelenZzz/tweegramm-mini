@@ -1,13 +1,17 @@
-import './Input.css';
+import styles from './Input.module.css';
 
+// react
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { chatActions } from '../../redux/chatSlice';
 
+// redux
+import { useDispatch } from 'react-redux';
+import { chatActions } from '../../../../redux/chatSlice';
+
+// icons
 import { IconButton } from '@material-ui/core';
 import { SendRounded } from '@material-ui/icons';
 
-const Input = () => {
+export const Input = () => {
   const dispatch = useDispatch();
 
   const [input, setInput] = useState<string>('');
@@ -20,8 +24,8 @@ const Input = () => {
   };
 
   return (
-    <div className="textInput__container">
-      <div className="textInput">
+    <div className={styles.container}>
+      <div className={styles.input}>
         <form>
           <input placeholder="Message..." type="text" value={input} onChange={(event) => setInput(event.target.value)} />
           <IconButton onClick={(event) => sendMessage(event)} type="submit">
@@ -32,5 +36,3 @@ const Input = () => {
     </div>
   );
 };
-
-export default Input;

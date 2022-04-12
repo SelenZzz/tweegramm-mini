@@ -1,10 +1,15 @@
-import './Login.css';
+import styles from './Login.module.css';
 
+// react
 import React, { useState } from 'react';
+
+// redux
 import { useDispatch } from 'react-redux';
-import { userActions } from '../redux/userSlice';
-import { iUser } from '../lib/types';
-import face from '../components/Login/faces';
+import { userActions } from '../../redux/userSlice';
+
+// utils
+import { iUser } from '../../lib/types';
+import { face as faceEmoji } from './faces';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -19,12 +24,12 @@ const Login = () => {
     }
   };
   return (
-    <div className="login">
-      <div className="login__title">
-        {face}
+    <div className={styles.container}>
+      <div className={styles.title}>
+        {faceEmoji}
         <h1>Tweegramm</h1>
       </div>
-      <form className="login__form">
+      <form className={styles.form}>
         <input placeholder="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         <button type="submit" onClick={(event) => loginUser(event)} title="Join">
           Join

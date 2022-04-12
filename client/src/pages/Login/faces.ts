@@ -1,3 +1,4 @@
+// prettier-ignore
 const faces = [
   ':-0',
   '( ͡° ͜ʖ ͡°)',
@@ -11,5 +12,4 @@ const faces = [
   '(-_(-_(-_(-_-)_-)_-)_-)',
 ];
 
-const face = faces[(faces.length * Math.random()) | 0];
-export default face;
+export const face = faces[(faces.length * Math.random()) | 0];
