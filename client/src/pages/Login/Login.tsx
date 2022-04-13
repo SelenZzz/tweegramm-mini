@@ -19,7 +19,7 @@ const Login = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const buttonRef = useRef<HTMLInputElement>(null);
 
-  const buttonActive = username.length > 0;
+  const buttonActive = username?.length > 0;
 
   useEffect(() => {
     if (username) buttonRef.current?.focus();
