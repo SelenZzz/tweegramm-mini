@@ -11,7 +11,6 @@ import { selectMessages } from '../../redux/chatSlice';
 import { Message } from './components/Message/Message';
 import { Input } from './components/Input/Input';
 import { Alert } from './components/Alert/Alert';
-import { iMessage, iUser } from '../../lib/types';
 
 const Chat = () => {
   // TODO: Write in message
@@ -33,6 +32,7 @@ const Chat = () => {
       if ('senderName' in m)
         return <Message key={index} data={m} displayAvatar={nextMessage(index + 1)?.userKey !== m.userKey} />;
       if ('username' in m) return <Alert key={index} text={`${m.username} has joined the chat`} />;
+      return null;
     });
   };
 
