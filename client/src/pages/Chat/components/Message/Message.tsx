@@ -22,8 +22,8 @@ export const Message = ({ data, displayAvatar }: { data: iMessage; displayAvatar
 
   return (
     <div className={styles.message}>
-      {displayAvatar && !sender && (
-        <div className={styles.avatar}>
+      {!sender && (
+        <div className={styles.avatar} style={{ visibility: displayAvatar ? 'visible' : 'hidden' }}>
           <Avatar litera={data.senderName!.charAt(0)} />
         </div>
       )}

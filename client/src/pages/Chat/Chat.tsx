@@ -11,15 +11,30 @@ import { selectMessages } from '../../redux/chatSlice';
 import { Message } from './components/Message/Message';
 import { Input } from './components/Input/Input';
 import { Alert } from './components/Alert/Alert';
+import { iMessage, iUser } from '../../lib/types';
 
 const Chat = () => {
-  // TODO: Add user list with avatars
-  // TODO: Alert on user join
   // TODO: Write in message
   // TODO: Write in message in realtime
   const messagesEndRef = useRef<HTMLInputElement>(null);
 
   const messages = useSelector(selectMessages);
+
+  const mapMessages = () => {
+    const nextMessage = (from: number) => {
+      for (let i = from; i < messages.length; i++) {
+        const m = messages[i];
+        if ('senderName' in m) return m;
+      }
+      return null;
+    };
+
+    return messages.map((m, index) => {
+      if ('senderName' in m)
+        return <Message key={index} data={m} displayAvatar={nextMessage(index + 1)?.userKey !== m.userKey} />;
+      if ('username' in m) return <Alert key={index} text={`${m.username} has joined the chat`} />;
+    });
+  };
 
   // scroll down on new message
   useEffect(() => {
@@ -30,10 +45,7 @@ const Chat = () => {
     <div className={styles.container}>
       <div className={styles.messages}>
         <Alert text={'You have joined the chat'} />
-        {messages.map((m, index) => {
-          if ('senderName' in m) return <Message key={index} data={m} />;
-          if ('username' in m) return <Alert key={index} text={`${m.username} has joined the chat`} />;
-        })}
+        {mapMessages()}
         <div ref={messagesEndRef} style={{ marginBottom: 5 }} />
       </div>
       <Input />
