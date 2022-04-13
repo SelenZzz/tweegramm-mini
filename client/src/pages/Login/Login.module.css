@@ -15,7 +15,7 @@
   justify-content: center;
 }
 
-.form > input {
+.form > input[type='text'] {
   margin: 30px;
   padding: 15px;
   outline: none;
@@ -26,17 +26,22 @@
   width: 200px;
 }
 
-.form > button {
+.submit {
   border: 0px;
   color: white;
   width: 234px;
   padding: 15px;
   border-radius: 10px;
+  background-color: #5b6874;
+  transition: 200ms;
+}
+
+.submitActive {
   background-color: #2b5478;
   transition: 200ms;
 }
 
-.form > button:hover {
+.submitActive:hover {
   color: #0296c7;
   background-color: white;
   transition: 200ms;

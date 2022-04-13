@@ -1,28 +1,36 @@
 import styles from './Login.module.css';
+import cx from 'classnames';
 
 // react
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // redux
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../redux/userSlice';
 
 // utils
-import { iUser } from '../../lib/types';
 import { face as faceEmoji } from './faces';
+import { useUsername } from '../../hooks/useUsername';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const { username, setUsername } = useUsername();
 
-  const [username, setUsername] = useState<string>('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const buttonRef = useRef<HTMLInputElement>(null);
 
-  const loginUser = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const buttonActive = username.length > 0;
+
+  useEffect(() => {
+    if (username) buttonRef.current?.focus();
+    else inputRef.current?.focus();
+  }, []);
+
+  const loginUser = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     event.preventDefault();
-    if (username) {
-      const user: iUser = { username: username };
-      dispatch(userActions.setUsername({ user: user }));
-    }
+    dispatch(userActions.setUsername({ user: username }));
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -30,10 +38,21 @@ const Login = () => {
         <h1>Tweegramm</h1>
       </div>
       <form className={styles.form}>
-        <input placeholder="Username" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-        <button type="submit" onClick={(event) => loginUser(event)} title="Join">
-          Join
-        </button>
+        <input
+          ref={inputRef}
+          placeholder="Username"
+          type="text"
+          value={username}
+          onChange={(e) => setUsername({ username: e.target.value })}
+        />
+        <input
+          ref={buttonRef}
+          className={cx(styles.submit, buttonActive && styles.submitActive)}
+          disabled={!buttonActive}
+          type="submit"
+          onClick={(event) => loginUser(event)}
+          value="Join"
+        />
       </form>
     </div>
   );

@@ -20,7 +20,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUsername: (state, action: PayloadAction<{ user: iUser }>) => {
-      // state.name = action.payload.user.name;
       return;
     },
     login: (state, action: PayloadAction<{ user: iUser }>) => {
