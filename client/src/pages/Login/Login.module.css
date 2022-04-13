@@ -21,22 +21,31 @@
   outline: none;
   color: white;
   background-color: transparent;
-  border: 1px solid white;
+  border: 1px solid #c7c6e0;
   border-radius: 10px;
+  height: 20px;
   width: 200px;
 }
 
 .submit {
   border: 0px;
-  color: white;
+  color: rgb(200, 200, 200);
   width: 234px;
   padding: 15px;
   border-radius: 10px;
+  border: 2px solid #5b6874;
   background-color: #5b6874;
   transition: 200ms;
+  outline: 0px solid white;
+}
+
+.submitActive:focus {
+  border: 2px solid #0296c7;
 }
 
 .submitActive {
+  color: white;
+  border: 2px solid #2b5478;
   background-color: #2b5478;
   transition: 200ms;
 }
