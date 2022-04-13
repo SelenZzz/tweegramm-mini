@@ -11,6 +11,7 @@ import { userActions } from '../../redux/userSlice';
 // utils
 import { face as faceEmoji } from './faces';
 import { useUsername } from '../../hooks/useUsername';
+import { iUser } from '../../lib/types';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,8 @@ const Login = () => {
 
   const loginUser = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     event.preventDefault();
-    dispatch(userActions.setUsername({ user: username }));
+    const user: iUser = { username: username };
+    dispatch(userActions.setUsername({ user: user }));
   };
 
   return (
